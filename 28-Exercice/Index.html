@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Bateau</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var boatX = -150; // Position initiale à gauche
+        var boatY = 115; // Position Y fixe 
+        var boatSpeed = 2; // Vitesse 
+        var waveOffset = 0; // Décalage pour animer les vagues
+
+        function drawBoat(x, y) {
+            // Effacer le canvas
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+            // Dessiner les vagues
+            ctx.fillStyle = "blue";
+            ctx.beginPath();
+            for (let i = 0; i <= canvas.width; i += 10) {
+                ctx.lineTo(i, 350 + 10 * Math.sin((i + waveOffset) * 0.05));
+            }
+            ctx.lineTo(canvas.width, canvas.height);
+            ctx.lineTo(0, canvas.height);
+            ctx.closePath();
+            ctx.fill();
+
+            // Calculer la position y du bateau en fonction des vagues
+            var waveY = 10 * Math.sin((x + waveOffset) * 0.05);
+
+            // Toile du bateau
+            ctx.beginPath();
+            ctx.moveTo(x + 90, y + 30 + waveY);
+            ctx.lineTo(x + 240, y + 180 + waveY);
+            ctx.lineTo(x + 90, y + 180 + waveY);
+            ctx.fillStyle = "lightblue";
+            ctx.fill();
+
+            // Poteau du bateau
+            ctx.fillStyle = "sienna";
+            ctx.fillRect(x + 75, y + waveY, 10, 200);
+
+            // Base du bateau
+            ctx.beginPath();
+            ctx.moveTo(x, y + 200 + waveY);
+            ctx.lineTo(x + 60, y + 250 + waveY);
+            ctx.lineTo(x + 190, y + 250 + waveY);
+            ctx.lineTo(x + 250, y + 200 + waveY);
+            ctx.fillStyle = "peru";
+            ctx.fill();
+
+            // Contour de la base du bateau
+            ctx.beginPath();
+            ctx.moveTo(x, y + 201 + waveY);
+            ctx.lineTo(x + 60, y + 250 + waveY);
+            ctx.lineTo(x + 190, y + 250 + waveY);
+            ctx.lineTo(x + 250, y + 201 + waveY);
+            ctx.lineWidth = 5;
+            ctx.strokeStyle = "sienna";
+            ctx.stroke();
+        }
+
+        function animate() {
+            drawBoat(boatX, boatY);
+
+            boatX += boatSpeed;
+
+            // le réinitialiser
+            if (boatX > canvas.width) {
+                boatX = -250; // Réinitialiser la position X pour recommencer à gauche
+            }
+
+            waveOffset += 2;
+
+            requestAnimationFrame(animate);
+        }
+
+        animate();
+    </script>
+</body>
+</html>

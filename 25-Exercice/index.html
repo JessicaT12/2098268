@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Visage carre</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="300" height="300"></canvas>
+
+    <script>
+        // Récupérer le canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        // Position et taille des éléments
+        var faceSize = 150; 
+        var eyeSize = 30; 
+        var mouthWidth = 80;
+        var mouthHeight = 20; 
+        var faceColor = "lightgreen"; 
+        var eyeColor = "blue";
+        var mouthColor = "pink"; 
+
+        //les positions
+        var eyeX = (faceSize - eyeSize * 2) / 4; 
+        var eyeY = faceSize / 3;
+        var mouthX = (faceSize - mouthWidth) / 2; 
+        var mouthY = faceSize / 1.5; 
+
+        // Dessiner le visage
+        ctx.fillStyle = faceColor;
+        ctx.fillRect(50, 50, faceSize, faceSize);
+
+        // Dessiner les yeux 
+        ctx.fillStyle = eyeColor;
+        ctx.fillRect(50 + eyeX, 50 + eyeY, eyeSize, eyeSize);
+        ctx.fillRect(50 + faceSize - eyeX - eyeSize, 50 + eyeY, eyeSize, eyeSize);
+
+        // Dessiner la bouche
+        ctx.fillStyle = mouthColor;
+        ctx.fillRect(50 + mouthX, 50 + mouthY, mouthWidth, mouthHeight);
+    </script>
+</body>
+</html>

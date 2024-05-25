@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Boule</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="400" height="400"></canvas>
+
+    <script>
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+        var x = 150;
+        var y = 150;
+        var dx = 2;
+        var dy = 4;
+        var radius = 10;
+
+        function init() {
+            return setInterval(draw, 10);
+        }
+
+        function draw() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            ctx.beginPath();
+            ctx.arc(x, y, radius, 0, 2 * Math.PI, false);
+            ctx.fillStyle = 'black';
+            ctx.fill();
+            ctx.closePath();
+
+            x += dx;
+            y += dy;
+        }
+
+        init();
+    </script>
+</body>
+</html>

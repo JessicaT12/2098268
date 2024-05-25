@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smiley Face</title>
+</head>
+<body>
+    <canvas id="myCanvas" width="600" height="300"></canvas>
+
+    <script>
+        // Récupérer le canvas
+        var canvas = document.getElementById("myCanvas");
+        var ctx = canvas.getContext("2d");
+
+        var centerX = canvas.width / 2;
+        var centerY = canvas.height / 2;
+        var faceRadius = 100;
+        var eyeRadius = 15;
+        var mouthRadius = 40;
+        var faceStrokeWidth = 4; 
+        var faceStrokeColor = "#8B4513";
+
+        // Dessiner le contour du visage 
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, faceRadius + faceStrokeWidth / 2, 0, 2 * Math.PI);
+        ctx.strokeStyle = faceStrokeColor;
+        ctx.lineWidth = faceStrokeWidth;
+        ctx.stroke();
+        ctx.closePath();
+
+        // Dessiner le visage 
+        ctx.beginPath();
+        ctx.arc(centerX, centerY, faceRadius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = "beige"; // Couleur beige pour le visage
+        ctx.fill();
+        ctx.closePath();
+
+        // Dessiner les yeux
+        ctx.beginPath();
+        ctx.arc(centerX - 35, centerY - 25, eyeRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue"; // Couleur bleue pour les yeux
+        ctx.fill();
+        ctx.closePath();
+
+        ctx.beginPath();
+        ctx.arc(centerX + 35, centerY - 25, eyeRadius, 0, 2 * Math.PI);
+        ctx.fillStyle = "blue"; // Couleur bleue pour les yeux
+        ctx.fill();
+        ctx.closePath();
+
+        // Dessiner la bouche
+        ctx.beginPath();
+        ctx.arc(centerX, centerY + 25, mouthRadius, 0, Math.PI);
+        ctx.strokeStyle = "red"; // Contour noir pour la bouche
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.closePath();
+    </script>
+</body>
+</html>
